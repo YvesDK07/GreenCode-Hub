@@ -1,0 +1,49 @@
+<%- include('partials/header') %>
+<div class="form-page" style="max-width: 640px;">
+  <h1>Nouveau snippet</h1>
+  <% if (error) { %><div class="alert alert-error"><%= error %></div><% } %>
+  <form method="POST" action="/new">
+    <div class="form-group">
+      <label for="title">Titre</label>
+      <input type="text" id="title" name="title" placeholder="Ex : Tri fusion optimise" required>
+    </div>
+    <div class="form-group">
+      <label for="language">Langage</label>
+      <input type="text" id="language" name="language" placeholder="Python, Java, C, JavaScript..." required>
+    </div>
+    <div class="form-group">
+      <label for="category_id">Categorie</label>
+      <select name="category_id" id="category_id" required>
+        <option value="">Choisir...</option>
+        <% categories.forEach(c => { %>
+          <option value="<%= c.id %>"><%= c.name %></option>
+        <% }) %>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="code">Code</label>
+      <textarea id="code" name="code" placeholder="Collez votre code ici..." required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="complexity_time">Complexite temporelle</label>
+      <input type="text" id="complexity_time" name="complexity_time" placeholder="O(n), O(n log n), O(n²)..." required>
+    </div>
+    <div class="form-group">
+      <label for="complexity_space">Complexite spatiale (optionnel)</label>
+      <input type="text" id="complexity_space" name="complexity_space" placeholder="O(1), O(n)...">
+    </div>
+    <div class="form-group">
+      <label for="energy_score">Score de sobriete (1 = gourmand, 5 = sobre)</label>
+      <select name="energy_score" id="energy_score" required>
+        <option value="">Choisir...</option>
+        <option value="5">5 — O(1) / O(log n) — Tres sobre</option>
+        <option value="4">4 — O(n) — Sobre</option>
+        <option value="3">3 — O(n log n) — Modere</option>
+        <option value="2">2 — O(n²) — Gourmand</option>
+        <option value="1">1 — O(2^n) ou pire — Tres gourmand</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-green" style="width:100%;">Publier le snippet</button>
+  </form>
+</div>
+<%- include('partials/footer') %>

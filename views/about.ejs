@@ -1,0 +1,55 @@
+<%- include('partials/header') %>
+<div class="container section">
+  <h1 style="color: var(--blue-dark); margin-bottom: 1.5rem;">A propos de GreenCode Hub</h1>
+
+  <p>GreenCode Hub est un site sobre ou les developpeurs partagent et comparent des snippets de code classes par efficacite energetique.</p>
+  <p>Ce projet a ete concu dans le cadre du module <strong>TI616 — Numerique Durable</strong> a l'EFREI Paris (2025-2026), coordonne par le Dr. Yvan GUIFO.</p>
+
+  <h2 style="color: var(--blue-dark); margin: 2rem 0 1rem;">Notre demarche Green IT</h2>
+
+  <p><strong>Sobriete fonctionnelle :</strong> Le site ne contient que les fonctionnalites strictement necessaires. Pas de chat en temps reel, pas de notifications push, pas de gamification superflue.</p>
+
+  <p><strong>Legerete des pages :</strong> Chaque page pese moins de 300 Ko. Le rendu se fait cote serveur (SSR), aucune image n'est utilisee, les polices sont celles du systeme.</p>
+
+  <p><strong>Reduction des requetes :</strong> Moins de 10 requetes HTTP par page. Un seul fichier CSS minifie. Zero bibliotheque externe lourde.</p>
+
+  <p><strong>Stockage minimal :</strong> Pas de photo de profil, pas de cookies tiers, pas de tracking. Seules les donnees utiles sont stockees.</p>
+
+  <p><strong>Accessibilite :</strong> Contrastes WCAG AA, navigation clavier, structure semantique HTML5, tailles de texte lisibles.</p>
+
+  <p><strong>Transparence :</strong> Le poids de chaque page est affiche dans le footer. Le code source est ouvert sur GitHub.</p>
+
+  <h2 style="color: var(--blue-dark); margin: 2rem 0 1rem;">L'equipe</h2>
+  <p>
+    <strong>Yves de KERROS</strong> — Back-end<br>
+    <strong>Raphael GIRARD</strong> — Front-end<br>
+    <strong>Lestyn JONES</strong> — Base de donnees<br>
+    <strong>Yohan DE LANDTSHEER</strong> — Documentation, tests, deploiement<br>
+    <strong>Robinson DIALLO</strong> — Front-end complementaire, design sobre
+  </p>
+
+  <h2 style="color: var(--blue-dark); margin: 2rem 0 1rem;">Stack technique</h2>
+  <p><strong>Front-end :</strong> HTML/CSS natif + Vue.js 3 (CDN leger)</p>
+  <p><strong>Back-end :</strong> Node.js + Express.js (SSR avec EJS)</p>
+  <p><strong>Base de donnees :</strong> SQLite (dev) / MySQL (prod)</p>
+  <p><strong>Referentiel :</strong> <a href="https://www.eco-conception-web.com/" target="_blank" rel="noopener">eco-conception-web.com</a></p>
+
+  <h2 style="color: var(--blue-dark); margin: 2rem 0 1rem;">Grille de score de sobriete</h2>
+  <table style="width:100%; border-collapse:collapse; margin:1rem 0;">
+    <thead>
+      <tr style="background:var(--blue); color:white;">
+        <th style="padding:0.5rem; text-align:left;">Score</th>
+        <th style="padding:0.5rem; text-align:left;">Complexite</th>
+        <th style="padding:0.5rem; text-align:left;">Exemple</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:0.5rem; border-bottom:1px solid var(--gray-300);">5 (tres sobre)</td><td style="padding:0.5rem; border-bottom:1px solid var(--gray-300);">O(1) / O(log n)</td><td style="padding:0.5rem; border-bottom:1px solid var(--gray-300);">Acces direct, recherche dichotomique</td></tr>
+      <tr><td style="padding:0.5rem; border-bottom:1px solid var(--gray-300);">4 (sobre)</td><td style="padding:0.5rem; border-bottom:1px solid var(--gray-300);">O(n)</td><td style="padding:0.5rem; border-bottom:1px solid var(--gray-300);">Parcours lineaire</td></tr>
+      <tr><td style="padding:0.5rem; border-bottom:1px solid var(--gray-300);">3 (modere)</td><td style="padding:0.5rem; border-bottom:1px solid var(--gray-300);">O(n log n)</td><td style="padding:0.5rem; border-bottom:1px solid var(--gray-300);">Tri fusion, tri rapide</td></tr>
+      <tr><td style="padding:0.5rem; border-bottom:1px solid var(--gray-300);">2 (gourmand)</td><td style="padding:0.5rem; border-bottom:1px solid var(--gray-300);">O(n²)</td><td style="padding:0.5rem; border-bottom:1px solid var(--gray-300);">Tri a bulles</td></tr>
+      <tr><td style="padding:0.5rem;">1 (tres gourmand)</td><td style="padding:0.5rem;">O(2^n) ou pire</td><td style="padding:0.5rem;">Brute force</td></tr>
+    </tbody>
+  </table>
+</div>
+<%- include('partials/footer') %>

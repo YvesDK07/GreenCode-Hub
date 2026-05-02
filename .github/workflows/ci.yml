@@ -1,0 +1,48 @@
+name: CI – GreenCode Hub
+
+on:
+  pull_request:
+    branches: [main, dev]
+  push:
+    branches: [main]
+
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Check CSS size (< 15 Ko)
+        run: |
+          CSS_SIZE=$(wc -c < public/style.css)
+          echo "CSS size: $CSS_SIZE bytes"
+          if [ "$CSS_SIZE" -gt 15360 ]; then
+            echo "ERREUR: style.css depasse 15 Ko ($CSS_SIZE bytes)"
+            exit 1
+          fi
+          echo "OK: style.css = $CSS_SIZE bytes (< 15 Ko)"
+
+      - name: Check dependency count (< 10)
+        run: |
+          DEP_COUNT=$(node -e "console.log(Object.keys(require('./package.json').dependencies || {}).length)")
+          echo "Dependencies: $DEP_COUNT"
+          if [ "$DEP_COUNT" -gt 10 ]; then
+            echo "ERREUR: trop de dependances ($DEP_COUNT)"
+            exit 1
+          fi
+          echo "OK: $DEP_COUNT dependances"
+
+      - name: Verify server starts
+        run: |
+          timeout 5 node server.js &
+          sleep 3
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:3000 | grep 200
+          echo " OK: server responds 200"
