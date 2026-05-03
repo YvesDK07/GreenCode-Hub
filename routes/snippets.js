@@ -42,7 +42,8 @@ module.exports = function(db) {
   // GET /snippet/:id
   router.get('/snippet/:id', (req, res) => {
     const snippet = db.prepare(`
-      SELECT s.id, s.title, s.language, s.energy_score, s.complexity_time, s.created_at,
+      SELECT s.id, s.title, s.code, s.language, s.energy_score, s.complexity_time,
+        s.complexity_space, s.author_id, s.created_at,
         c.name as category_name, u.username as author_name,
         (SELECT COUNT(*) FROM votes WHERE snippet_id = s.id) as vote_count
       FROM snippets s
