@@ -81,6 +81,7 @@ GreenCode-Hub/
 │
 ├── docs/
 │   ├── Rapport_GreenCodeHub.pdf   # Rapport final (Partie 1 + 2)
+│   ├── GreenCodeHub-Présentation.pdf # Support de présentation
 │   └── screenshots/               # Captures Lighthouse / EcoIndex
 │
 └── .github/
