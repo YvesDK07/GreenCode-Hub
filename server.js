@@ -34,6 +34,7 @@ async function start() {
 
   app.use('/', require('./routes/auth')(db));
   app.use('/', require('./routes/snippets')(db));
+  app.use('/', require('./routes/admin')(db));
 
   app.get('/', (req, res) => {
     const popular = db.prepare(`
