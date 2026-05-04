@@ -1,0 +1,45 @@
+<%- include('partials/header') %>
+<div class="container section">
+  <h1 style="color: var(--blue-dark); margin-bottom: 0.5rem;">Administration</h1>
+  <p style="color: #666; margin-bottom: 2rem;">Tableau de bord administrateur — gestion des utilisateurs, catégories et modération des snippets.</p>
+
+  <div class="cards" style="margin-bottom: 2rem;">
+    <div class="card">
+      <h3>Utilisateurs</h3>
+      <div style="font-size: 2rem; font-weight: bold; color: var(--blue-dark);"><%= stats.users %></div>
+      <div class="meta"><%= stats.admins %> admin(s)</div>
+    </div>
+    <div class="card">
+      <h3>Snippets</h3>
+      <div style="font-size: 2rem; font-weight: bold; color: var(--blue-dark);"><%= stats.snippets %></div>
+      <div class="meta">Tous utilisateurs confondus</div>
+    </div>
+    <div class="card">
+      <h3>Catégories</h3>
+      <div style="font-size: 2rem; font-weight: bold; color: var(--blue-dark);"><%= stats.categories %></div>
+      <div class="meta">Disponibles dans le catalogue</div>
+    </div>
+    <div class="card">
+      <h3>Votes</h3>
+      <div style="font-size: 2rem; font-weight: bold; color: var(--blue-dark);"><%= stats.votes %></div>
+      <div class="meta">Total cumulé</div>
+    </div>
+  </div>
+
+  <h2 style="color: var(--blue-dark); margin-bottom: 1rem;">Actions disponibles</h2>
+  <div class="cards">
+    <div class="card">
+      <h3><a href="/admin/users">Gérer les utilisateurs</a></h3>
+      <div class="meta">Lister, changer les rôles, supprimer des comptes (avec pagination).</div>
+    </div>
+    <div class="card">
+      <h3><a href="/admin/categories">Gérer les catégories</a></h3>
+      <div class="meta">Créer, modifier ou supprimer les catégories de snippets.</div>
+    </div>
+    <div class="card">
+      <h3><a href="/catalogue">Modérer les snippets</a></h3>
+      <div class="meta">En tant qu'admin, vous pouvez modifier ou supprimer n'importe quel snippet depuis sa fiche.</div>
+    </div>
+  </div>
+</div>
+<%- include('partials/footer') %>

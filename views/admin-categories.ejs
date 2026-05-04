@@ -1,0 +1,64 @@
+<%- include('partials/header') %>
+<div class="container section">
+  <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+    <h1 style="color: var(--blue-dark); margin: 0;">Gestion des catégories</h1>
+    <a href="/admin" class="btn btn-outline">← Retour admin</a>
+  </div>
+  <p style="color: #666; margin: 0.5rem 0 1.5rem;"><%= categories.length %> catégorie(s) au total.</p>
+
+  <% if (error) { %><div class="alert alert-error"><%= error %></div><% } %>
+  <% if (success) { %><div class="alert alert-success"><%= success %></div><% } %>
+
+  <h2 style="color: var(--blue-dark); margin-bottom: 1rem;">Créer une catégorie</h2>
+  <form method="POST" action="/admin/categories" style="max-width: 480px; margin-bottom: 2rem;">
+    <div class="form-group">
+      <label for="name">Nom *</label>
+      <input type="text" id="name" name="name" required maxlength="50">
+    </div>
+    <div class="form-group">
+      <label for="description">Description (optionnelle)</label>
+      <input type="text" id="description" name="description" maxlength="200">
+    </div>
+    <button type="submit" class="btn btn-primary">Créer</button>
+  </form>
+
+  <h2 style="color: var(--blue-dark); margin-bottom: 1rem;">Catégories existantes</h2>
+  <table class="admin-table" style="width:100%; border-collapse: collapse;">
+    <thead>
+      <tr style="text-align:left; border-bottom: 2px solid var(--green); background:#f7faf7;">
+        <th style="padding: 0.6rem;">Nom</th>
+        <th style="padding: 0.6rem;">Description</th>
+        <th style="padding: 0.6rem;">Snippets</th>
+        <th style="padding: 0.6rem;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% categories.forEach(c => { %>
+        <tr style="border-bottom: 1px solid #eee;">
+          <td style="padding: 0.6rem;">
+            <form method="POST" action="/admin/categories/<%= c.id %>/edit" style="display:flex; gap:0.5rem; align-items:center;">
+              <input type="text" name="name" value="<%= c.name %>" required maxlength="50" style="flex:1; min-width:120px;">
+          </td>
+          <td style="padding: 0.6rem;">
+              <input type="text" name="description" value="<%= c.description || '' %>" maxlength="200" style="width:100%; min-width:160px;">
+          </td>
+          <td style="padding: 0.6rem;"><%= c.snippet_count %></td>
+          <td style="padding: 0.6rem; white-space: nowrap;">
+              <button type="submit" class="btn btn-outline" style="font-size:0.8rem; padding:0.25rem 0.5rem;">Enregistrer</button>
+            </form>
+            <form method="POST" action="/admin/categories/<%= c.id %>/delete" style="display:inline;" onsubmit="return confirm('Supprimer la catégorie « <%= c.name %> » ?');">
+              <button type="submit" class="btn btn-danger" style="font-size:0.8rem; padding:0.25rem 0.5rem;" <% if (c.snippet_count > 0) { %>disabled title="Supprimez d'abord les snippets de cette catégorie"<% } %>>Supprimer</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <% if (categories.some(c => c.snippet_count > 0)) { %>
+    <p class="meta" style="margin-top: 1rem;">
+      Les catégories contenant encore des snippets ne peuvent pas être supprimées tant que ces snippets existent.
+    </p>
+  <% } %>
+</div>
+<%- include('partials/footer') %>
