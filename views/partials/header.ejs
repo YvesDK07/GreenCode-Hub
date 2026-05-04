@@ -17,6 +17,9 @@
         <% if (user) { %>
           <a href="/new">+ Snippet</a>
           <a href="/profile"><%= user.username %></a>
+          <% if (user.role === 'admin') { %>
+            <a href="/admin">Admin</a>
+          <% } %>
           <a href="/logout">Déconnexion</a>
         <% } else { %>
           <a href="/login" class="btn-sm">Connexion</a>
