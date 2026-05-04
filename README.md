@@ -60,11 +60,12 @@ GreenCode-Hub/
 │
 ├── routes/
 │   ├── auth.js            # CRUD utilisateurs (register, login, profile, delete)
-│   └── snippets.js        # CRUD snippets + votes + catalogue + filtres
+│   ├── snippets.js        # CRUD snippets + votes + catalogue + filtres
+│   └── admin.js           # Routes administration (users, catégories, modération)
 │
 ├── views/                 # Templates EJS (rendu côté serveur)
 │   ├── partials/
-│   │   ├── header.ejs     # Header + navigation
+│   │   ├── header.ejs     # Header + navigation (lien Admin si role=admin)
 │   │   └── footer.ejs     # Footer + badge éco
 │   ├── index.ejs          # Page d'accueil + engagements
 │   ├── catalogue.ejs      # Catalogue filtrable
@@ -74,7 +75,10 @@ GreenCode-Hub/
 │   ├── login.ejs          # Connexion
 │   ├── register.ejs       # Inscription
 │   ├── profile.ejs        # Profil + gestion compte
-│   └── about.ejs          # À propos + démarche Green IT
+│   ├── about.ejs          # À propos + démarche Green IT
+│   ├── admin.ejs          # Dashboard administrateur
+│   ├── admin-users.ejs    # Gestion utilisateurs (liste paginée + actions)
+│   └── admin-categories.ejs  # Gestion catégories (CRUD complet)
 │
 ├── public/
 │   └── style.css          # CSS unique (8,4 Ko, sobriété maximale)
